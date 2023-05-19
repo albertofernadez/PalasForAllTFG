@@ -50,7 +50,6 @@ import java.sql.DriverManager;
 @RequestMapping("/")
 public class RegistroControlador {
 
-	private static final Logger log = Logger.getLogger(RegistroControlador.class);
 
 	//private UsuarioRepositorio usuarioRepositorio;
 
@@ -92,12 +91,6 @@ public class RegistroControlador {
 	public String adminProducto(Model model, String busqueda, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		List<Producto> productos;
-		if (busqueda != null) {
-			productos = service.buscador(busqueda);
-		} else {
-			productos = service.listar();
-		}
-
 		Page<Producto> productosPage = service.listarr(PageRequest.of(page, 6));
 		List<Producto> productost = productosPage.getContent();
 
@@ -112,12 +105,8 @@ public class RegistroControlador {
 		return "adminProductos";
 	}
 	
-	@GetMapping("/")
-	public String Index() {
-		return "index";
-	}
 
-	@GetMapping("/hkjkj")
+	@GetMapping("/")
 	public String Ordenar (Model model, String busqueda, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int pageSize, Authentication authentication)  {		
 		List<productosOrdenados> pOrdenados = new ArrayList<>();
 
@@ -343,11 +332,6 @@ public class RegistroControlador {
 		    model5.addAttribute("media", 0);
 		}
 		
-		MDC.put("id_cliente", Integer.toString(id_cliente));
-		MDC.put("usuario", emailLogueado);
-		log.info("Visitado el producto " + p.getNombre() + " [" + id_producto + "]");
-		MDC.remove("id_cliente");
-		MDC.remove("usuario");
 		
 	    if (authentication != null && authentication.isAuthenticated()) {
 	        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -402,7 +386,7 @@ public class RegistroControlador {
 
 		Boolean plataforma = false;
 
-		Page<Producto> productosPage = service.mostrarVideojuegoss(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarPalass(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -410,7 +394,7 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarVideojuegos();
+		List<Producto> totalProductPage = service.mostrarPalas();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -426,11 +410,11 @@ public class RegistroControlador {
 	}
 
 	@GetMapping("/paleteros")
-	public String listarAccesorios(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String listarPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = false;
 
-		Page<Producto> productosPage = service.mostrarAccesorioss(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarPaleteross(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -438,7 +422,7 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarAccesorios();
+		List<Producto> totalProductPage = service.mostrarPaleteros();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -455,11 +439,12 @@ public class RegistroControlador {
 	
 
 	@GetMapping("/adidas")
-	public String listarPlaystation(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String listarAdidas(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
+		
 
-		Page<Producto> productosPage = service.mostrarPlayStationn(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarAdidass(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -467,7 +452,7 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarPlayStation();
+		List<Producto> totalProductPage = service.mostrarAdidas();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 		
@@ -483,19 +468,19 @@ public class RegistroControlador {
 	}
 
 	@GetMapping("/bullpadel")
-	public String listarSwitch(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String listarBullpadel(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
 
-		Page<Producto> productosPage = service.mostrarSwitchh(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBullpadell(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
-		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(3));
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarSwitch();
+		List<Producto> totalProductPage = service.mostrarBullpadel();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 		
@@ -513,15 +498,15 @@ public class RegistroControlador {
 	public String listarXbox(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarXboxx(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBabolatt(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
-		model.addAttribute("nombrePlat", service.getNombrePlataforma(3));
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarxBox();
+		List<Producto> totalProductPage = service.mostrarBabolat();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -540,7 +525,7 @@ public class RegistroControlador {
 	public String listarPc(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarPCC(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarDropshott(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -548,7 +533,7 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarPC();
+		List<Producto> totalProductPage = service.mostrarDropshot();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -562,19 +547,20 @@ public class RegistroControlador {
 		return "categoria";
 	}
 	
-	@GetMapping("/noxt")
+	@GetMapping("/nox")
 	public String listarNox(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarPCC(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarNoxx(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
-
 		model.addAttribute("productos", productos);
+		
 		model.addAttribute("nombrePlat", service.getNombrePlataforma(5));
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarPC();
+		List<Producto> totalProductPage = service.mostrarNox();
+		
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -587,12 +573,16 @@ public class RegistroControlador {
 
 		return "categoria";
 	}
+	
+	
+	
+	
 
 	@GetMapping("/adminPalas")
-	public String adminVideojuegos(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String adminPalass(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarVideojuegoss(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarPalass(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -600,7 +590,7 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarVideojuegos();
+		List<Producto> totalProductPage = service.mostrarPalas();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 	    
@@ -609,10 +599,10 @@ public class RegistroControlador {
 	}
 	
 	@GetMapping("/adminPaleteros")
-	public String adminAccesorios(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String adminPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarAccesorioss(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarPaleteross(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -620,7 +610,7 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarAccesorios();
+		List<Producto> totalProductPage = service.mostrarPaleteros();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -632,37 +622,18 @@ public class RegistroControlador {
 	
 
 	@GetMapping("/adminAdidas")
-	public String adminPlaystation(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String adminAdidas(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarPlayStationn(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarAdidass(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
-		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(1));
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarPlayStation();
-		long total = totalProductPage.size();
-		model.addAttribute("totalProductos", total);
-
-		return "adminProductos";
-	}
-	
-	@GetMapping("/adminBabolat")
-	public String adminSwitch(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
-
-		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarSwitchh(PageRequest.of(page, 6));
-		List<Producto> productos = productosPage.getContent();
-
-		model.addAttribute("productos", productos);
-		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
-		model.addAttribute("plataforma", plataforma);
-		model.addAttribute("productosPage", productosPage);
-
-		List<Producto> totalProductPage = service.mostrarSwitch();
+		List<Producto> totalProductPage = service.mostrarAdidas();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -670,10 +641,10 @@ public class RegistroControlador {
 	}
 	
 	@GetMapping("/adminBullpadel")
-	public String adminxBox(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String adminBullpadel(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarXboxx(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBullpadell(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -681,7 +652,26 @@ public class RegistroControlador {
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarxBox();
+		List<Producto> totalProductPage = service.mostrarBullpadel();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		return "adminProductos";
+	}
+	
+	@GetMapping("/adminBabolat")
+	public String adminBabolat(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarBabolatt(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(3));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarBabolat();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -689,18 +679,38 @@ public class RegistroControlador {
 	}
 	
 	@GetMapping("/adminDropshot")
-	public String adminPC(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	public String adminDrophot(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarPCC(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarDropshott(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
-		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(4));
 		model.addAttribute("plataforma", plataforma);
 		model.addAttribute("productosPage", productosPage);
 
-		List<Producto> totalProductPage = service.mostrarPC();
+		List<Producto> totalProductPage = service.mostrarDropshot();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		return "adminProductos";
+
+	}
+	
+	@GetMapping("/adminNox")
+	public String adminNox(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarNoxx(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(5));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarNox();
 		long total = totalProductPage.size();
 		model.addAttribute("totalProductos", total);
 
@@ -756,11 +766,7 @@ public class RegistroControlador {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		String emailLogueado = userDetail.getUsername();
 		
-		MDC.put("usuario", emailLogueado);
-		MDC.put("id_cliente", "Administrador");
-		log.info("Se ha actualizado el producto: " + producto.getNombre() + " [" + producto.getId_producto() + "]");
-		MDC.remove("usuario");
-		MDC.remove("id_cliente");
+	
 		
 		return "redirect:/adminProductos#producto-" + producto.getId_producto();
 	}
@@ -775,11 +781,7 @@ public class RegistroControlador {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		String emailLogueado = userDetail.getUsername();
 		
-		MDC.put("usuario", emailLogueado);
-		MDC.put("id_cliente", "Administrador");
-		log.info("Se ha eliminado el producto: " + producto.getNombre() + " [" + producto.getId_producto() + "]");
-		MDC.remove("usuario");
-		MDC.remove("id_cliente");
+		
 		
 		return "redirect:/adminProductos";
 	}
@@ -802,11 +804,7 @@ public class RegistroControlador {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		String emailLogueado = userDetail.getUsername();
 		
-		MDC.put("usuario", emailLogueado);
-		MDC.put("id_cliente", "Administrador");
-		log.info("Se ha creado el producto: " + producto.getNombre() + " [" + producto.getId_producto() + "]");
-		MDC.remove("usuario");
-		MDC.remove("id_cliente");
+	
 		
 		return "redirect:/adminProductos";
 	}
@@ -836,11 +834,7 @@ public class RegistroControlador {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		String emailLogueado = userDetail.getUsername();
 		
-		MDC.put("usuario", emailLogueado);
-		MDC.put("id_cliente", "Administrador");
-		log.info("Se ha desactivado el usuario: " + usuario.getEmail() + " [" + id + "]");
-		MDC.remove("usuario");
-		MDC.remove("id_cliente");
+	
 		
 		return "redirect:/adminUsuarios";
 	}
@@ -869,11 +863,7 @@ public class RegistroControlador {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		String emailLogueado = userDetail.getUsername();
 		
-		MDC.put("usuario", emailLogueado);
-		MDC.put("id_cliente", "Administrador");
-		log.info("Se ha reactivado el usuario: " + usuario.getEmail() + " [" + id + "]");
-		MDC.remove("usuario");
-		MDC.remove("id_cliente");
+		
 		
 		return "redirect:/adminDesactivado";
 	}
@@ -1215,7 +1205,6 @@ public class RegistroControlador {
 		
 		
 		if (orden.getCantidad() == 0) {
-			log.info("Carrito vacio");
 			//return "/";
 			String referer = request.getHeader("Referer");
 			return "redirect:" + referer; 
@@ -1236,12 +1225,7 @@ public class RegistroControlador {
 			
 
 			
-			MDC.put("id_cliente", Integer.toString(id_cliente));
-			MDC.put("usuario", emailLogueado);
-			log.info("Realizado el pedido " + numero);
-			MDC.remove("id_cliente");
-			MDC.remove("usuario");
-			
+	
 			return "redirect:/";
 		}		
 	}

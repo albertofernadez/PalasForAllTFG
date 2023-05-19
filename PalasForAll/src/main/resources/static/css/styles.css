@@ -720,7 +720,7 @@ progress {
 }
 
 .img-fluid {
-  width: 90%;
+  width: 75%;
 }
 
 .img-fluid2 {
@@ -11624,7 +11624,7 @@ header.masthead .masthead-heading {
 #novedades .novedades-item .novedades-link .novedades-hover {
   display: flex;
   position: absolute;
-  width: 90%;
+  width: 75%;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -11642,7 +11642,7 @@ header.masthead .masthead-heading {
   padding: 1.5rem;
   text-align: center;
   background-color: #fff;
-  width:60%;
+  width:75%;
 }
 #novedades .novedades-item .novedades-caption .novedades-caption-heading {
   font-size: 1.5rem;
@@ -11940,3 +11940,5 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+

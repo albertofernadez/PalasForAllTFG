@@ -23,64 +23,64 @@ public interface IproductoService extends JpaRepository<Producto, Integer> {
 			nativeQuery=true)
 	Page<Producto> listarr(Pageable pageable);
 	
-	@Query(value="SELECT * FROM Producto p WHERE p.nombre LIKE %:busqueda% AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> buscador(@Param("busqueda") String busqueda);
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.categoria_id_categoria = 1 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarVideojuegos();
+	List<Producto> mostrarPalas();
 
 	@Query(value="SELECT * FROM Producto p WHERE p.categoria_id_categoria = 1 AND p.descatalogado = 0",
 			nativeQuery=true)
-	Page<Producto> mostrarVideojuegoss(Pageable pageable);
+	Page<Producto> mostrarPalass(Pageable pageable);
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.categoria_id_categoria = 2 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarAccesorios();
+	List<Producto> mostrarPaleteros();
 
 	@Query(value="SELECT * FROM Producto p WHERE p.categoria_id_categoria = 2 AND p.descatalogado = 0",
 			nativeQuery=true)
-	Page<Producto> mostrarAccesorioss(Pageable pageable);
+	Page<Producto> mostrarPaleteross(Pageable pageable);
 	
-	@Query(value="SELECT * FROM Producto p WHERE p.categoria_id_categoria = 3 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarElectronica();
 
-	@Query(value="SELECT * FROM Producto p WHERE p.categoria_id_categoria = 3 AND p.descatalogado = 0",
-			nativeQuery=true)
-	Page<Producto> mostrarElectronicaa(Pageable pageable);
+	
+	
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 1 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarVarias();
+	List<Producto> mostrarAdidas();
 
-	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 1 AND p.descatalogado = 0",
+	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 1 AND p.categoria_id_categoria = 1 AND p.descatalogado = 0",
 			nativeQuery=true)
-	Page<Producto> mostrarVariass(Pageable pageable);
-	
-	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 2 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarPlayStation();
+	Page<Producto> mostrarAdidass(Pageable pageable);
 
-	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 2 AND p.descatalogado = 0",
+	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 3 AND p.categoria_id_categoria = 1 AND p.descatalogado = 0",
 			nativeQuery=true)
-	Page<Producto> mostrarPlayStationn(Pageable pageable);
-
-	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 3 AND p.descatalogado = 0",
-			nativeQuery=true)
-	Page<Producto> mostrarSwitchh(Pageable pageable);
+	Page<Producto> mostrarBullpadell(Pageable pageable);
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 3 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarSwitch();
+	List<Producto> mostrarBullpadel();
+	
+	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 2 AND p.descatalogado = 0", nativeQuery=true)
+	List<Producto> mostrarBabolat();
+
+	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 2 AND p.categoria_id_categoria = 1 AND p.descatalogado = 0",
+			nativeQuery=true)
+	Page<Producto> mostrarBabolatt(Pageable pageable);
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 4 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarxBox();
+	List<Producto> mostrarDropshot();
 
-	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 4 AND p.descatalogado = 0",
+	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 4 AND p.categoria_id_categoria = 1 AND p.descatalogado = 0",
 			nativeQuery=true)
-	Page<Producto> mostrarXboxx(Pageable pageable);
+	Page<Producto> mostrarDropshott(Pageable pageable);
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 5 AND p.descatalogado = 0", nativeQuery=true)
-	List<Producto> mostrarPC();
+	List<Producto> mostrarNox();
 
-	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 5 AND p.descatalogado = 0",
+	@Query(value="SELECT * FROM Producto p WHERE p.plataforma_id_plataforma = 5 AND p.categoria_id_categoria = 1 AND  p.descatalogado = 0",
 			nativeQuery=true)
-	Page<Producto> mostrarPCC(Pageable pageable);
+	Page<Producto> mostrarNoxx(Pageable pageable);
+	
+	
+	
+	
+	
 	
 	@Query(value="SELECT * FROM Producto p WHERE p.descatalogado = 1", nativeQuery=true)
 	List<Producto> mostrarDescatalogado();

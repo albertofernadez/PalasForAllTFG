@@ -29,7 +29,7 @@
 			<!--Mensajes de error-->
 			<div class="alert alert-danger mb-4 w-50 d-block m-auto text-center" th:if="${param.error}"
 				th:with="errorMsg=${session[SPRING_SECURITY_LAST_EXCEPTION].message}">
-				Su intento de logearse ha fallado.<br /> Razón: <span
+				Su intento de inicio de sesión ha fallado.<br /> Razón: <span
 					th:text="${errorMsg}">Email o contraseña erroneos</span>
 			</div>
 			<!--Mensajes de logout-->

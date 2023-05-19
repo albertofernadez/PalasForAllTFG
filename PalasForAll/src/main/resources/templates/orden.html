@@ -39,10 +39,20 @@ Información de la compra      </h1>
                 <h5 class="card-title">
                   DATOS ORDEN
                 </h5>
-                <h6 th:text=" 'Nombre: '+ ${usuario[0].nombre}"> </h6>
-                <h6 th:text="'Correo: '+  ${usuario[0].email}"></h6>
 				
 				<div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Nombre:</span>
+    <div th:if="${usuario[0].nombre == null or usuario[0].nombre == ''}">
+        <input name="nombre" th:value="${usuario[0].nombre}" type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" required>
+    </div>
+
+    <div th:if="${usuario[0].nombre != null and usuario[0].nombre != '' }">
+        <input name="nombre" th:value="${usuario[0].nombre}" type="text" class="form-control"
+        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
+    </div>
+</div>
+		<div class="input-group mb-3">
     <span class="input-group-text" id="inputGroup-sizing-default">Dirección:</span>
     <div th:if="${usuario[0].direccion == null or usuario[0].direccion == ''}">
         <input name="direccion" th:value="${usuario[0].direccion}" type="text" class="form-control" aria-label="Sizing example input"
@@ -51,6 +61,18 @@ Información de la compra      </h1>
 
     <div th:if="${usuario[0].direccion != null and usuario[0].direccion != '' }">
         <input name="direccion" th:value="${usuario[0].direccion}" type="text" class="form-control"
+        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+    </div>
+</div>
+<div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Correo:</span>
+    <div th:if="${usuario[0].email == null or usuario[0].email == ''}">
+        <input name="email" th:value="${usuario[0].email}" type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" required>
+    </div>
+
+    <div th:if="${usuario[0].email != null and usuario[0].email != '' }">
+        <input name="email" th:value="${usuario[0].email}" type="text" class="form-control"
         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
     </div>
 </div>

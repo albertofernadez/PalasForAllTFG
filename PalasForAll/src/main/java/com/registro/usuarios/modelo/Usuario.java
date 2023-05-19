@@ -60,7 +60,7 @@ public class Usuario {
 	public Usuario(String nombre, String foto, String apellido, String email, boolean enabled, String password,  Collection<Rol> roles) {
 		super();
 		this.nombre = nombre;
-		this.foto = "../assets/img/icons/gta1.jpg";
+		this.foto = "../assets/img/icons/image.png";
 		this.apellido = apellido;
 		this.email = email;
 		this.password = password;

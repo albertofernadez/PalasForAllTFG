@@ -14,21 +14,15 @@ public class ProductoServicio {
 	@Autowired
 	private IproductoService service;
 	
-	public List<Producto> buscador(String busqueda){
-		return service.buscador(busqueda);	
-		
-	}
+	
 	
 	public List<Producto> mostrarVideojuegos(){
-		return service.mostrarVideojuegos();	
+		return service.mostrarPalas();	
 	}
 	
 	public List<Producto> mostrarAccesorios(){
-		return service.mostrarAccesorios();	
+		return service.mostrarPaleteros();	
 	}
 	
-	public List<Producto> mostrarElectronica(){
-		return service.mostrarElectronica();	
-	}
 	
 }
