@@ -438,13 +438,42 @@ public class RegistroControlador {
 
 	
 
-	@GetMapping("/adidas")
-	public String listarAdidas(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	@GetMapping("/adidasPalas")
+	public String listarAdidasPalas(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
 		
 
-		Page<Producto> productosPage = service.mostrarAdidass(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarAdidasPalas(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(1));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarAdidas();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+		
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	        String emailLogueado = userDetails.getUsername();
+	        Usuario usuario = usuarioService.findByEmail(emailLogueado);
+	        model.addAttribute("avatar", usuario.getFoto());
+	    }
+
+		return "categoria";
+
+	}
+	
+	@GetMapping("/adidasPaleteros")
+	public String listarAdidasPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		
+
+		Page<Producto> productosPage = service.mostrarAdidasPaleteros(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -467,12 +496,12 @@ public class RegistroControlador {
 
 	}
 
-	@GetMapping("/bullpadel")
+	@GetMapping("/bullpadelPalas")
 	public String listarBullpadel(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
 
-		Page<Producto> productosPage = service.mostrarBullpadell(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBullpadelPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -494,11 +523,38 @@ public class RegistroControlador {
 		return "categoria";
 	}
 	
-	@GetMapping("/babolat")
-	public String listarXbox(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	@GetMapping("/bullpadelPaleteros")
+	public String listarBullpadelPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarBabolatt(PageRequest.of(page, 6));
+
+		Page<Producto> productosPage = service.mostrarBullpadelPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(3));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarBullpadel();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+		
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	        String emailLogueado = userDetails.getUsername();
+	        Usuario usuario = usuarioService.findByEmail(emailLogueado);
+	        model.addAttribute("avatar", usuario.getFoto());
+	    }
+
+		return "categoria";
+	}
+	
+	@GetMapping("/babolatPalas")
+	public String listarBabolatPalas(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarBabolatPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -520,12 +576,37 @@ public class RegistroControlador {
 		return "categoria";
 	}
 	
-	
-	@GetMapping("/dropshot")
-	public String listarPc(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	@GetMapping("/babolatPaleteros")
+	public String listarbabolatPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarDropshott(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBabolatPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarBabolat();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		if (authentication != null && authentication.isAuthenticated()) {
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String emailLogueado = userDetails.getUsername();
+			Usuario usuario = usuarioService.findByEmail(emailLogueado);
+			model.addAttribute("avatar", usuario.getFoto());
+		}
+
+		return "categoria";
+	}
+	
+	@GetMapping("/dropshotPalas")
+	public String listarDropshotPalas(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarDropshotPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -547,11 +628,64 @@ public class RegistroControlador {
 		return "categoria";
 	}
 	
-	@GetMapping("/nox")
-	public String listarNox(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	@GetMapping("/dropshotPaleteros")
+	public String listarDropshotPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarNoxx(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarDropshotPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(4));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarDropshot();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		if (authentication != null && authentication.isAuthenticated()) {
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String emailLogueado = userDetails.getUsername();
+			Usuario usuario = usuarioService.findByEmail(emailLogueado);
+			model.addAttribute("avatar", usuario.getFoto());
+		}
+
+		return "categoria";
+	}
+	
+	@GetMapping("/noxPalas")
+	public String listarNoxPalas(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarNoxPalas(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+		model.addAttribute("productos", productos);
+		
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(5));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarNox();
+		
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		if (authentication != null && authentication.isAuthenticated()) {
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String emailLogueado = userDetails.getUsername();
+			Usuario usuario = usuarioService.findByEmail(emailLogueado);
+			model.addAttribute("avatar", usuario.getFoto());
+		}
+
+		return "categoria";
+	}
+	
+	@GetMapping("/noxPaleteros")
+	public String listarNoxPaleteros(Model model, @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarNoxPaleteros(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 		model.addAttribute("productos", productos);
 		
@@ -621,11 +755,11 @@ public class RegistroControlador {
 	
 	
 
-	@GetMapping("/adminAdidas")
+	@GetMapping("/adminAdidasPalas")
 	public String adminAdidas(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarAdidass(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarAdidasPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -640,11 +774,30 @@ public class RegistroControlador {
 		return "adminProductos";
 	}
 	
-	@GetMapping("/adminBullpadel")
+	@GetMapping("/adminAdidasPaleteros")
+	public String adminAdidasPaleteros(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarAdidasPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(1));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarAdidas();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		return "adminProductos";
+	}
+	
+	@GetMapping("/adminBullpadelPalas")
 	public String adminBullpadel(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarBullpadell(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBullpadelPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -659,11 +812,30 @@ public class RegistroControlador {
 		return "adminProductos";
 	}
 	
-	@GetMapping("/adminBabolat")
+	@GetMapping("/adminBullpadelPaleteros")
+	public String adminBullpadelPaleteros(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarBullpadelPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(2));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarBullpadel();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		return "adminProductos";
+	}
+	
+	@GetMapping("/adminBabolatPalas")
 	public String adminBabolat(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarBabolatt(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBabolatPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -678,11 +850,30 @@ public class RegistroControlador {
 		return "adminProductos";
 	}
 	
-	@GetMapping("/adminDropshot")
-	public String adminDrophot(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	@GetMapping("/adminBabolatPaleteros")
+	public String adminBabolatPaleteros(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarDropshott(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarBabolatPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(3));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarBabolat();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		return "adminProductos";
+	}
+	
+	@GetMapping("/adminDropshotPalas")
+	public String adminDrophotPalas(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarDropshotPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -698,11 +889,31 @@ public class RegistroControlador {
 
 	}
 	
-	@GetMapping("/adminNox")
-	public String adminNox(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+	@GetMapping("/adminDropshotPaleteros")
+	public String adminDrophotPaleteros(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
 		Boolean plataforma = true;
-		Page<Producto> productosPage = service.mostrarNoxx(PageRequest.of(page, 6));
+		Page<Producto> productosPage = service.mostrarDropshotPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
+
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(4));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
+
+		List<Producto> totalProductPage = service.mostrarDropshot();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
+
+		return "adminProductos";
+
+	}
+	
+	@GetMapping("/adminNoxPalas")
+	public String adminNoxPalas(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
+
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarNoxPalas(PageRequest.of(page, 6));
 		List<Producto> productos = productosPage.getContent();
 
 		model.addAttribute("productos", productos);
@@ -718,25 +929,27 @@ public class RegistroControlador {
 
 	}
 	
-	@GetMapping("/adminDescatalogado")
-	public String adminDescatalogado(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize) {
-		List<Producto> productos;
-		productos = service.mostrarDescatalogado();
+	@GetMapping("/adminNoxPaleteros")
+	public String adminNoxPaleteros(Model model,  @RequestParam(defaultValue = "0") int page, Authentication authentication) {
 
-	    int start = page * pageSize;
-	    int end = Math.min((start + pageSize), productos.size());
-	    List<Producto> productosPaginados = productos.subList(start, end);
+		Boolean plataforma = true;
+		Page<Producto> productosPage = service.mostrarNoxPaleteros(PageRequest.of(page, 6));
+		List<Producto> productos = productosPage.getContent();
 
-	    model.addAttribute("productos", productosPaginados);
-	    model.addAttribute("currentPage", page);
-	    model.addAttribute("totalPages", (int) Math.ceil((double) productos.size() / pageSize));
-	    model.addAttribute("pageSize", pageSize);
+		model.addAttribute("productos", productos);
+		model.addAttribute("nombrePlat", service.getNombrePlataforma(5));
+		model.addAttribute("plataforma", plataforma);
+		model.addAttribute("productosPage", productosPage);
 
-	    long totalProductos = productos.size();
-	    model.addAttribute("totalProductos", totalProductos);
+		List<Producto> totalProductPage = service.mostrarNox();
+		long total = totalProductPage.size();
+		model.addAttribute("totalProductos", total);
 
 		return "adminProductos";
+
 	}
+	
+	
 	
 	@GetMapping("/modificarProducto/{id_producto}")
 	public String modificarProducto(@PathVariable("id_producto") int id_producto, Model model, @RequestParam(defaultValue = "0") int page) {

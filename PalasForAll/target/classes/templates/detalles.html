@@ -28,6 +28,7 @@
 				<img class="img-fluid2 pb-2" th:src="${producto.foto}"/>
 			</div>
 			
+			
 		    <div class="col-6">
                 <form th:action="@{/añadirCarrito}" method="POST">
 					<input type="hidden" th:value="${producto.id_producto}" name="id">

@@ -49,20 +49,27 @@
 								<li class="nav-item">
 									<a data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-chevron-down bx-md'></i></a>
 		  							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start bg-dark" aria-labelledby="menuadministracion">
-										<li><a class="dropdown-item text-white link" th:href="@{/adidas}">Adidas</a></li>
-										<li><a class="dropdown-item text-white link" th:href="@{/babolat}">Babolat</a></li>
-								    	<li><a class="dropdown-item text-white link" th:href="@{/bullpadel}">Bull Padel</a></li>
-								    	<li><a class="dropdown-item text-white link" th:href="@{/dropshot}">Drop Shot</a></li>
+										<li><class="dropdown-divider text-white" ></li>
+										<li><a class="dropdown-item text-white link" th:href="@{/adidasPalas}">Adidas</a></li>
+										<li><a class="dropdown-item text-white link" th:href="@{/babolatPalas}">Babolat</a></li>
+								    	<li><a class="dropdown-item text-white link" th:href="@{/bullpadelPalas}">Bull Padel</a></li>
+								    	<li><a class="dropdown-item text-white link" th:href="@{/dropshotPalas}">Drop Shot</a></li>
+								    	<li><a class="dropdown-item text-white link" th:href="@{/noxPalas}">Nox</a></li>
+								    	<li><class="dropdown-divider text-white" ></li>
 								  	</ul>
 								</li>
 								<li class="nav-item me-0"><a class="nav-link" th:href="@{/paleteros}"> Paletero </a></li>
 								<li class="nav-item">
 									<a data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-chevron-down bx-md'></i></a>
 		  							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start bg-dark" aria-labelledby="menuadministracion">
-										<li><a class="dropdown-item text-white link" th:href="@{/adidas}">Adidas</a></li>
-										<li><a class="dropdown-item text-white link" th:href="@{/babolat}">Babolat</a></li>
-								    	<li><a class="dropdown-item text-white link" th:href="@{/bullpadel}">Bull Padel</a></li>
-								    	<li><a class="dropdown-item text-white link" th:href="@{/dropshot}">Drop Shot</a></li>
+		  								<li><class="dropdown-divider text-white" ></li>
+										<li><a class="dropdown-item text-white link" th:href="@{/adidasPaleteros}">Adidas</a></li>
+										<li><a class="dropdown-item text-white link" th:href="@{/babolatPaleteros}">Babolat</a></li>
+								    	<li><a class="dropdown-item text-white link" th:href="@{/bullpadelPaleteros}">Bull Padel</a></li>
+								    	<li><a class="dropdown-item text-white link" th:href="@{/dropshotPaleteros}">Drop Shot</a></li>
+								    	<li><a class="dropdown-item text-white link" th:href="@{/noxPaleteros}">Nox</a></li>
+								    	<li><class="dropdown-divider text-white" ></li>
+								    	
 								  	</ul>
 								</li>
 							</ul>
@@ -85,11 +92,11 @@
 							<img id="menuadministracion" src="../static/assets/img/admin.png" th:src="@{/assets/img/admin.png}" />
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start bg-dark" aria-labelledby="menuadministracion">
+							<li><hr class="dropdown-divider text-white" ></li>
 							<li><a class="dropdown-item text-white link" th:href="@{/adminProductos}">Productos</a></li>
 					    	<li><a class="dropdown-item text-white link" th:href="@{/adminUsuarios}">Usuarios</a></li>
 					    	<li><a class="dropdown-item text-white link" th:href="@{/adminPedidos}">Pedidos</a></li>
 					    	<li><hr class="dropdown-divider text-white" ></li>
-    						<li><a class="dropdown-item text-white link" th:href="@{/adminEstadisticas}">Estadisticas</a></li>
 					  	</ul>
 					</div>
 					
